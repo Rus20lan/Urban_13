@@ -3,7 +3,13 @@ export default async function fetchUsers() {
   try {
     if (res.ok) {
       const data = await res.json();
-      data.map((user) => user.name).forEach((name) => console.log(name));
+      const result = data
+        .map((user) => user.name)
+        .reduce((acc, curr) => acc + ', ' + curr);
+      // .forEach((name) => console.log(name));
+
+      console.log(result);
+      return result;
     } else {
       throw new Error(`Ошибка: ${res.status}`);
     }
